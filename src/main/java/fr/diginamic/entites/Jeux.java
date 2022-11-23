@@ -16,7 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import fr.diginamic.enumeration.Saison;
+import fr.diginamic.enumerations.Saison;
 
 @Entity
 @Table

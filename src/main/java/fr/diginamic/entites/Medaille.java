@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import fr.diginamic.enumeration.Couleur;
+import fr.diginamic.enumerations.Couleur;
 
 @Entity
 @Table

@@ -1,4 +1,4 @@
-package fr.diginamic.enumeration;
+package fr.diginamic.enumerations;
 
 public enum Couleur {
 	OR,
