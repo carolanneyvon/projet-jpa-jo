@@ -1,4 +1,4 @@
-package entites;
+package fr.diginamic.enumeration;
 
 public enum Saison {
 	SUMMER, 
