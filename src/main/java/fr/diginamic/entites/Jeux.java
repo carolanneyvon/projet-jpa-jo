@@ -18,6 +18,10 @@ import javax.persistence.Table;
 
 import fr.diginamic.enumerations.Saison;
 
+/**
+ * @author Carolanne
+ *
+ */
 @Entity
 @Table
 public class Jeux {
@@ -42,6 +46,90 @@ public class Jeux {
 		joinColumns = @JoinColumn(name = "ID_JEUX", referencedColumnName = "ID"), 
 		inverseJoinColumns = @JoinColumn(name = "ID_ATHLETE", referencedColumnName = "ID"))
 	private List<Athlete> athletes = new ArrayList<Athlete>();
+
+	/** Constructeur
+	 * 
+	 */
+	public Jeux() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Jeux [id=" + id + ", annee=" + annee + ", saison=" + saison + ", ville=" + ville + ", athletes="
+				+ athletes + "]";
+	}
+
+	/** Getter pour l'attribut id
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/** Setter pour l'attribut id
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/** Getter pour l'attribut annee
+	 * @return the annee
+	 */
+	public Date getAnnee() {
+		return annee;
+	}
+
+	/** Setter pour l'attribut annee
+	 * @param annee the annee to set
+	 */
+	public void setAnnee(Date annee) {
+		this.annee = annee;
+	}
+
+	/** Getter pour l'attribut saison
+	 * @return the saison
+	 */
+	public Saison getSaison() {
+		return saison;
+	}
+
+	/** Setter pour l'attribut saison
+	 * @param saison the saison to set
+	 */
+	public void setSaison(Saison saison) {
+		this.saison = saison;
+	}
+
+	/** Getter pour l'attribut ville
+	 * @return the ville
+	 */
+	public String getVille() {
+		return ville;
+	}
+
+	/** Setter pour l'attribut ville
+	 * @param ville the ville to set
+	 */
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
+	/** Getter pour l'attribut athletes
+	 * @return the athletes
+	 */
+	public List<Athlete> getAthletes() {
+		return athletes;
+	}
+
+	/** Setter pour l'attribut athletes
+	 * @param athletes the athletes to set
+	 */
+	public void setAthletes(List<Athlete> athletes) {
+		this.athletes = athletes;
+	}
+	
 	
 
 }

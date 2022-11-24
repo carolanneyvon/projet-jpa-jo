@@ -9,6 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * @author Carolanne
+ *
+ */
 @Entity
 @Table
 public class Epreuve {
@@ -29,4 +33,74 @@ public class Epreuve {
 	@ManyToOne
 	@JoinColumn(name="ID_SPORT")
 	private Sport sport;
+
+	/** Constructeur
+	 * 
+	 */
+	public Epreuve() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Epreuve [id=" + id + ", nom=" + nom + ", jeux=" + jeux + ", sport=" + sport + "]";
+	}
+
+	/** Getter pour l'attribut id
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/** Setter pour l'attribut id
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/** Getter pour l'attribut nom
+	 * @return the nom
+	 */
+	public String getNom() {
+		return nom;
+	}
+
+	/** Setter pour l'attribut nom
+	 * @param nom the nom to set
+	 */
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	/** Getter pour l'attribut jeux
+	 * @return the jeux
+	 */
+	public Jeux getJeux() {
+		return jeux;
+	}
+
+	/** Setter pour l'attribut jeux
+	 * @param jeux the jeux to set
+	 */
+	public void setJeux(Jeux jeux) {
+		this.jeux = jeux;
+	}
+
+	/** Getter pour l'attribut sport
+	 * @return the sport
+	 */
+	public Sport getSport() {
+		return sport;
+	}
+
+	/** Setter pour l'attribut sport
+	 * @param sport the sport to set
+	 */
+	public void setSport(Sport sport) {
+		this.sport = sport;
+	}
+	
+	
 }

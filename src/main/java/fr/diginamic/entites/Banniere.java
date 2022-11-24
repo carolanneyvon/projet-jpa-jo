@@ -7,6 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author Carolanne
+ *
+ */
 @Entity
 @Table
 public class Banniere {
@@ -24,4 +28,73 @@ public class Banniere {
 	@Column(name="STATUT")
 	private Boolean statut;
 
+	/** Constructeur
+	 * 
+	 */
+	public Banniere() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Banniere [id=" + id + ", cioCode=" + cioCode + ", nom=" + nom + ", statut=" + statut + "]";
+	}
+
+	/** Getter pour l'attribut id
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/** Setter pour l'attribut id
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/** Getter pour l'attribut cioCode
+	 * @return the cioCode
+	 */
+	public String getCioCode() {
+		return cioCode;
+	}
+
+	/** Setter pour l'attribut cioCode
+	 * @param cioCode the cioCode to set
+	 */
+	public void setCioCode(String cioCode) {
+		this.cioCode = cioCode;
+	}
+
+	/** Getter pour l'attribut nom
+	 * @return the nom
+	 */
+	public String getNom() {
+		return nom;
+	}
+
+	/** Setter pour l'attribut nom
+	 * @param nom the nom to set
+	 */
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	/** Getter pour l'attribut statut
+	 * @return the statut
+	 */
+	public Boolean getStatut() {
+		return statut;
+	}
+
+	/** Setter pour l'attribut statut
+	 * @param statut the statut to set
+	 */
+	public void setStatut(Boolean statut) {
+		this.statut = statut;
+	}
+
+	
 }
