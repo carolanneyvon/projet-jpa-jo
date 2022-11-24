@@ -28,6 +28,18 @@ public class Sport {
 	public Sport() {
 		super();
 	}
+	
+	
+
+	/** Constructeur
+	 * @param nom
+	 */
+	public Sport(String nom) {
+		super();
+		this.nom = nom;
+	}
+
+
 
 	@Override
 	public String toString() {

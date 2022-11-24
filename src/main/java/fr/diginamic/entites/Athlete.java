@@ -4,8 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,7 +18,7 @@ import fr.diginamic.enumerations.Sexe;
 public class Athlete {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(name="NOM", length = 155)
@@ -44,6 +42,26 @@ public class Athlete {
 	 */
 	public Athlete() {
 		super();
+	}
+	
+	
+
+	/** Constructeur
+	 * @param id
+	 * @param nom
+	 * @param sexe
+	 * @param taille
+	 * @param poids
+	 * @param age
+	 */
+	public Athlete(Integer id, String nom, Sexe sexe, Float taille, Float poids, int age) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.sexe = sexe;
+		this.taille = taille;
+		this.poids = poids;
+		this.age = age;
 	}
 
 	@Override
