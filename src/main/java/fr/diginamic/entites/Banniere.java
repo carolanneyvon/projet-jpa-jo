@@ -25,8 +25,8 @@ public class Banniere {
 	@Column(name="NOM", length = 155)
 	private String nom;
 	
-	@Column(name="STATUT")
-	private Boolean statut;
+	@Column(name="STATUT", length = 1)
+	private String statut;
 
 	/** Constructeur
 	 * 
@@ -34,6 +34,20 @@ public class Banniere {
 	public Banniere() {
 		super();
 	}
+
+	
+	/** Constructeur
+	 * @param cioCode
+	 * @param nom
+	 * @param statut
+	 */
+	public Banniere(String cioCode, String nom, String statut) {
+		super();
+		this.cioCode = cioCode;
+		this.nom = nom;
+		this.statut = statut;
+	}
+
 
 	@Override
 	public String toString() {
@@ -85,14 +99,14 @@ public class Banniere {
 	/** Getter pour l'attribut statut
 	 * @return the statut
 	 */
-	public Boolean getStatut() {
+	public String getStatut() {
 		return statut;
 	}
 
 	/** Setter pour l'attribut statut
 	 * @param statut the statut to set
 	 */
-	public void setStatut(Boolean statut) {
+	public void setStatut(String statut) {
 		this.statut = statut;
 	}
 

@@ -1,7 +1,7 @@
 package fr.diginamic.enumerations;
 
 public enum Couleur {
-	OR,
-	ARGENT,
+	GOLD,
+	SILVER,
 	BRONZE;
 }

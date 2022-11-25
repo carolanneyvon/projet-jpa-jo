@@ -1,7 +1,6 @@
 package fr.diginamic.entites;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -31,7 +30,7 @@ public class Jeux {
 	private Integer id;
 	
 	@Column(name="ANNEE")
-	private Date annee;
+	private int annee;
 	
 	@Column(name = "SAISON")
 	@Enumerated(value = EnumType.STRING)
@@ -53,6 +52,22 @@ public class Jeux {
 	public Jeux() {
 		super();
 	}
+	
+	
+
+	/** Constructeur
+	 * @param annee
+	 * @param saison
+	 * @param ville
+	 */
+	public Jeux(int annee, Saison saison, String ville) {
+		super();
+		this.annee = annee;
+		this.saison = saison;
+		this.ville = ville;
+	}
+
+
 
 	@Override
 	public String toString() {
@@ -77,14 +92,14 @@ public class Jeux {
 	/** Getter pour l'attribut annee
 	 * @return the annee
 	 */
-	public Date getAnnee() {
+	public int getAnnee() {
 		return annee;
 	}
 
 	/** Setter pour l'attribut annee
 	 * @param annee the annee to set
 	 */
-	public void setAnnee(Date annee) {
+	public void setAnnee(int annee) {
 		this.annee = annee;
 	}
 

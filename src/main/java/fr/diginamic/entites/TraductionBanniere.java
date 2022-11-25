@@ -2,6 +2,8 @@ package fr.diginamic.entites;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,6 +18,9 @@ import javax.persistence.Table;
 public class TraductionBanniere {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
 	@Column(name ="CODE_LANGUE", length = 3)
 	private String codeLangue;
 	
@@ -33,6 +38,20 @@ public class TraductionBanniere {
 	public TraductionBanniere() {
 		super();
 	}
+
+	/** Constructeur
+	 * @param codeLangue
+	 * @param traductionBanniere
+	 * @param banniere
+	 */
+	public TraductionBanniere(String codeLangue, String traductionBanniere, Banniere banniere) {
+		super();
+		this.codeLangue = codeLangue;
+		this.traductionBanniere = traductionBanniere;
+		this.banniere = banniere;
+	}
+
+
 
 	@Override
 	public String toString() {
