@@ -2,6 +2,8 @@ package fr.diginamic.entites;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,6 +18,9 @@ import javax.persistence.Table;
 public class TraductionEpreuve {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
 	@Column(name ="CODE_LANGUE", length = 3)
 	private String codeLangue;
 	
@@ -32,6 +37,20 @@ public class TraductionEpreuve {
 	 */
 	public TraductionEpreuve() {
 		super();
+	}
+	
+	
+
+	/** Constructeur
+	 * @param codeLangue
+	 * @param traductionEpreuve
+	 * @param epreuve
+	 */
+	public TraductionEpreuve(String codeLangue, String traductionEpreuve, Epreuve epreuve) {
+		super();
+		this.codeLangue = codeLangue;
+		this.traductionEpreuve = traductionEpreuve;
+		this.epreuve = epreuve;
 	}
 
 	@Override

@@ -21,6 +21,7 @@ import fr.diginamic.entites.Banniere;
 import fr.diginamic.entites.Jeux;
 import fr.diginamic.entites.Sport;
 import fr.diginamic.entites.TraductionBanniere;
+import fr.diginamic.entites.TraductionSport;
 
 public class ConnexionJpa {
 
@@ -35,11 +36,6 @@ public class ConnexionJpa {
 		List<String> linesAthlete = Files.readAllLines(pathAthlete, StandardCharsets.UTF_8);
 		// Pour ne pas prendre en compte les entêtes du fichier
 		linesAthlete.remove(0);
-		
-		// Afficher les données du fichier ligne par ligne
-//		for (String line : linesAthlete) {
-//		 System.out.println(line);
-//		}
 		
 
 		// Parcourir le fichier Athlete
@@ -66,9 +62,6 @@ public class ConnexionJpa {
 				poids = Float.parseFloat(tab[5]);
 			}
 			
-			// Attributs pour Sport
-			String nomSport = tab[12];
-			
 			// Attributs pour Jeux
 			int annee = Integer.parseInt(tab[9]);
 			Saison saison = Saison.valueOf(tab[10].toUpperCase());
@@ -85,21 +78,7 @@ public class ConnexionJpa {
 			}
 			System.out.println(athlete);
 			
-			// Insertion dans la table Sport
-			Sport sport = new Sport(nomSport);
-			TypedQuery<Sport> querySportBase = em.createQuery("SELECT s FROM Sport s WHERE s.nom= :nom", Sport.class);
-			querySportBase.setParameter("nom", sport.getNom());
-			// récupere le resultat de la requete et le stock dans sportBaseResult
-			List<Sport>sportBaseResult = querySportBase.getResultList();
-			if (sportBaseResult.size() == 0) {
-				em.persist(sport);
-			}else {
-				Sport sportA = sportBaseResult.get(0); // objet sport de la liste, extrait le premier element de la base
-				sport.setId(sportA.getId());
-			}
-			System.out.println(sport);
-			
-			// Insertion dans la table jeux
+			// Insertion dans la table Jeux
 			Jeux jeux = new Jeux(annee, saison, ville);	
 			TypedQuery<Jeux> queryJeuxBase = em.createQuery("SELECT a FROM Jeux a WHERE a.annee = :annee AND a.ville = :ville", Jeux.class);
 			queryJeuxBase.setParameter("annee", jeux.getAnnee());
@@ -118,6 +97,7 @@ public class ConnexionJpa {
 			transaction.commit();
 			
 		}
+		
 			// Lecture du fichier Banniere
 			// Transforme les lignes en objets
 			Path pathBanniere = Paths.get("C:\\Users\\Formation\\Documents\\workspace-spring-tool-suite-4-4.16.0.RELEASE\\projet-jpa-jo\\src\\main\\resources\\donnees\\wikipedia-iso-country-codes.csv");
@@ -125,7 +105,7 @@ public class ConnexionJpa {
 			// Pour ne pas prendre en compte les entêtes du fichier
 			linesBanniere.remove(0);
 			
-			for (int j = 0; j < 100; j++) {
+			for (int j = 0; j < linesBanniere.size(); j++) {
 				transaction.begin();
 				
 				// Attributs pour Banniere
@@ -182,6 +162,75 @@ public class ConnexionJpa {
 					tradBanniereEn.setCodeLangue(traductionB.getCodeLangue());
 				}
 				System.out.println(tradBanniereEn);
+				
+				
+				transaction.commit();
+		}
+			
+			
+			// Lecture du fichier Sport
+			// Transforme les lignes en objets
+			Path pathSport = Paths.get("C:\\Users\\Formation\\Documents\\workspace-spring-tool-suite-4-4.16.0.RELEASE\\projet-jpa-jo\\src\\main\\resources\\donnees\\liste_des_sports.csv");
+			List<String> linesSport = Files.readAllLines(pathSport, StandardCharsets.UTF_8);
+			// Pour ne pas prendre en compte les entêtes du fichier
+			linesSport.remove(0);
+			
+			for (int k = 0; k < linesSport.size(); k++) {
+				transaction.begin();
+				
+				// Attributs pour Sport
+				String[] tabB = linesSport.get(k).split(";");
+				String nomSport = tabB[1];
+				
+				// Insertion dans la table Sport
+				Sport sport = new Sport(nomSport);
+				TypedQuery<Sport> querySportBase = em.createQuery("SELECT s FROM Sport s WHERE s.nom= :nom", Sport.class);
+				querySportBase.setParameter("nom", sport.getNom());
+				// récupere le resultat de la requete et le stock dans sportBaseResult
+				List<Sport>sportBaseResult = querySportBase.getResultList();
+				if (sportBaseResult.size() == 0) {
+					em.persist(sport);
+				}else {
+					Sport sportA = sportBaseResult.get(0); // objet sport de la liste, extrait le premier element de la base
+					sport.setId(sportA.getId());
+				}
+				System.out.println(sport);
+				
+				// Attributs pour TraductionSportFr
+				String codeLangueSportFr = "FR";
+				String traductionSportFr = tabB[1];
+				
+				// Insertion des traduction FR dans la table TraductionSport		
+				TraductionSport tradSportFr = new TraductionSport(codeLangueSportFr, traductionSportFr, sport);			
+				TypedQuery<TraductionSport> queryTraductionSportFr = em.createQuery("SELECT t FROM TraductionSport t WHERE t.traductionSport = :traductionSport AND t.sport = :sport", TraductionSport.class);
+				queryTraductionSportFr.setParameter("traductionSport", tradSportFr.getTraductionSport());
+				queryTraductionSportFr.setParameter("sport", tradSportFr.getSport());
+				List<TraductionSport>traductionSportFrBaseResult = queryTraductionSportFr.getResultList();
+				if (traductionSportFrBaseResult.size() == 0) {
+					em.persist(tradSportFr);
+				}else {
+					TraductionSport traductionSportA = traductionSportFrBaseResult.get(0); // objet banniere de la liste, extrait le premier element de la base
+					tradSportFr.setCodeLangue(traductionSportA.getCodeLangue());
+				}
+				System.out.println(tradSportFr);
+				
+				// Attributs pour TraductionSportEn
+				String codeLangueSportEn = "EN";
+				String traductionSportEn = tabB[0];
+				
+				// Insertion des traduction EN dans la table TraductionBanniere
+				TraductionSport tradSportEn = new TraductionSport(codeLangueSportEn, traductionSportEn, sport);			
+				TypedQuery<TraductionSport> queryTraductionSportEn = em.createQuery("SELECT t FROM TraductionSport t WHERE t.traductionSport = :traductionSport AND t.sport = :sport", TraductionSport.class);
+				queryTraductionSportEn.setParameter("traductionSport", tradSportEn.getTraductionSport());
+				queryTraductionSportEn.setParameter("sport", tradSportEn.getSport());
+				List<TraductionSport>traductionSportEnBaseResult = queryTraductionSportEn.getResultList();
+				if (traductionSportEnBaseResult.size() == 0) {
+					em.persist(tradSportEn);
+				}else {
+					TraductionSport traductionSportB = traductionSportEnBaseResult.get(0); // objet banniere de la liste, extrait le premier element de la base
+					tradSportEn.setCodeLangue(traductionSportB.getCodeLangue());
+				}
+				System.out.println(tradSportEn);
 				
 				
 				transaction.commit();
