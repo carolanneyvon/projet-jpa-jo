@@ -41,6 +41,20 @@ public class Epreuve {
 		super();
 	}
 
+	/** Constructeur
+	 * @param nom
+	 * @param jeux
+	 * @param sport
+	 */
+	public Epreuve(String nom, Jeux jeux, Sport sport) {
+		super();
+		this.nom = nom;
+		this.jeux = jeux;
+		this.sport = sport;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Epreuve [id=" + id + ", nom=" + nom + ", jeux=" + jeux + ", sport=" + sport + "]";
